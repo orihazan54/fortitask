@@ -1,22 +1,20 @@
-const cors = require('cors'); // מייבא את CORS
-const express = require('express'); // מייבא את Express
-const app = express(); // יוצר מופע של Express
+const express = require('express');
+const cors = require('cors');
+require('dotenv').config();
 
-// Middleware כדי לאפשר CORS רק לדומיינים מסוימים
+const app = express();
+
+// הגדרות CORS
 app.use(cors({
-  origin: ['https://fortitask.org', 'https://www.fortitask.org']
+  origin: [process.env.CLIENT_URL, 'http://localhost:3000'], // הוספת הדומיין
+  credentials: true
 }));
 
-// Middleware כדי לאפשר קריאה של JSON בבקשות
 app.use(express.json());
 
-// מסלול ברירת מחדל לבדיקה
-app.get('/', (req, res) => {
-  res.send('API is running...');
+app.get('/api/data', (req, res) => {
+  res.json({ message: 'FortiTask API is live!' });
 });
 
-// הפעלת השרת על פורט 5000 או פורט מוגדר מראש
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

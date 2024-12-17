@@ -1,27 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import { fetchData } from './services/api'; // ייבוא הפונקציה מהקובץ api.js
-import SignUp from './pages/SignUp'; // ייבוא דף ההרשמה
-import './App.css'; // ייבוא קובץ עיצוב
+import { fetchData } from './services/api';
+import SignUp from './pages/SignUp';
+import './App.css';
 
 function App() {
-  const [data, setData] = useState(''); // משתנה סטייט לאחסון המידע מהשרת
+  const [data, setData] = useState('');
 
   useEffect(() => {
     const getData = async () => {
-      const result = await fetchData(); // קריאה לפונקציה fetchData
-      setData(result); // שמירת התוצאה במשתנה הסטייט
+      const result = await fetchData();
+      setData(result);
     };
-
-    getData(); // הפעלת הפונקציה
+    getData();
   }, []);
 
   return (
     <div className="App">
-      {/* כותרת ראשית */}
       <h1>FortiTask</h1>
       <p>Server Response: {data || 'Loading...'}</p>
-
-      {/* דף ההרשמה */}
       <SignUp />
     </div>
   );
