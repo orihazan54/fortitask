@@ -1,20 +1,28 @@
 const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
+const connectDB = require('./config/db');
+
 
 const app = express();
 
-// הגדרות CORS
-app.use(cors({
-  origin: [process.env.CLIENT_URL, 'http://localhost:3000'], // הוספת הדומיין
-  credentials: true
-}));
+// Connect to MongoDB
+connectDB();
 
+// Middleware
 app.use(express.json());
+app.use(cors({ origin: process.env.CLIENT_URL }));
 
-app.get('/api/data', (req, res) => {
-  res.json({ message: 'FortiTask API is live!' });
-});
+// Routes
+app.use('/api/users', require('./routes/userRoutes'));
 
+// Start server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+
+
+app.use(cors({
+  origin: ['http://localhost:3000', 'https://www.fortitask.org'], // מקורות מותרים
+  credentials: true
+}));
