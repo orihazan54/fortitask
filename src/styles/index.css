@@ -1,0 +1,17 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+    color: #1e90ff; /* כחול */
+  }
+  
+  a {
+    text-decoration: none;
+    color: #1e90ff; /* כחול */
+  }
+  
+  a:hover {
+    color: #ffc107; /* צהוב */
+  }
+  

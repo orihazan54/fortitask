@@ -1,28 +1,39 @@
-const express = require('express');
-const router = express.Router();
-const User = require('../models/User');
+const express = require("express");
+const bcrypt = require("bcryptjs");
+const User = require("../models/User");
 
-// Register route
-router.post('/signup', async (req, res) => {
-  console.log('Request body:', req.body);
-  const { username, email, password } = req.body;
+const router = express.Router();
+
+router.post("/signup", async (req, res) => {
+  const { username, email, password, role } = req.body;
 
   try {
-    // יצירת משתמש חדש
-    const user = new User({ username, email, password });
-    await user.save();
+    console.log("Signup request received:", req.body); // Debug
+    if (!username || !email || !password || !role) {
+      return res.status(400).json({ message: "All fields are required" });
+    }
 
-    // החזרת תגובה עם פרטי המשתמש
-    res.status(201).json({
-      message: 'User registered successfully!',
-      user: { username: user.username, email: user.email }
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ message: "User already exists" });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const newUser = new User({
+      username,
+      email,
+      password: hashedPassword,
+      role,
+      permissions: [],
     });
-  } catch (err) {
-    console.error('Error saving user:', err.message);
-    res.status(500).json({
-      message: 'Server error',
-      error: err.message
-    });
+
+    await newUser.save();
+    console.log("User created:", newUser); // Debug
+    res.status(201).json({ message: "User created successfully!" });
+  } catch (error) {
+    console.error("Server error during signup:", error);
+    res.status(500).json({ message: "Internal server error" });
   }
 });
 

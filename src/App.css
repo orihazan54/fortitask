@@ -1,63 +1,32 @@
-/* עיצוב כללי לדף ההרשמה */
-.signup-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: #f4f4f9;
+body {
   margin: 0;
-}
-
-.signup-card {
-  background-color: #fff;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  max-width: 400px;
-  width: 100%;
-}
-
-.signup-logo {
-  width: 100px;
-  margin-bottom: 20px;
-}
-
-h2 {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom, #e0eafc, #cfdef3);
   color: #333;
+}
+
+.app-container {
+  display: flex;
+}
+
+.dashboard-content {
+  margin-left: 250px;
+  padding: 20px;
+  flex-grow: 1;
+  min-height: 100vh;
+  transition: margin-left 0.3s ease-in-out;
+}
+
+.sidebar.closed + .dashboard-content {
+  margin-left: 60px;
+}
+
+h1 {
+  font-size: 28px;
+  color: #0047ab;
   margin-bottom: 20px;
 }
 
-.form-group {
-  margin-bottom: 15px;
-  text-align: left;
-}
-
-label {
-  display: block;
-  margin-bottom: 5px;
-  color: #666;
-  font-weight: bold;
-}
-
-input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  font-size: 1rem;
-}
-
-.signup-button {
-  background-color: #4CAF50;
-  color: #fff;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 5px;
+button {
   cursor: pointer;
-  font-size: 1rem;
-}
-
-.signup-button:hover {
-  background-color: #45a049;
 }

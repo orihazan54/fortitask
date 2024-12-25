@@ -1,0 +1,20 @@
+.page-container {
+    display: flex;
+  }
+  
+  .page-content {
+    padding: 20px;
+    margin-left: 200px;
+  }
+  
+  .profile-details {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .profile-details p {
+    margin: 10px 0;
+  }
+  

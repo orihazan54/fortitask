@@ -1,0 +1,22 @@
+.page-container {
+    display: flex;
+  }
+  
+  .page-content {
+    padding: 20px;
+    margin-left: 200px;
+  }
+  
+  h1 {
+    color: #0047ab;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  li {
+    margin-bottom: 10px;
+  }
+  
